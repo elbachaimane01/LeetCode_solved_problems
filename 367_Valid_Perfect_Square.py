@@ -24,5 +24,6 @@ class Solution(object):
         return output
 
 ##Test case
-assert isPerfectSquare(16)==True 
-assert isPerfectSquare(14)==False 
+s = Solution()
+assert s.isPerfectSquare(16)==True 
+assert s.isPerfectSquare(14)==False 
