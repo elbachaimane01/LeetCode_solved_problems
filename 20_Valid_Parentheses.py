@@ -1,26 +1,24 @@
 class Solution(object):
-    def isValid(self, s):
+    def generateParenthesis(self, n):
         """
-        :type s: str
-        :rtype: bool
+        :type n: int
+        :rtype: List[str]
         """
-        open=['(','[','{']
-        close=[')',']','}']
-        temp=[]
-        for bracket in s:
-            if bracket in open:
-                temp+=close[open.index(bracket)]
-            elif bracket in close: 
-                #get the last item of tem if there is 
-                if temp==[]:
-                    return False
-                else:
-                    last=temp[-1]
-                    if bracket==last:
-                        temp=temp[:-1]
-                    else:
-                        return False
+        #Using backtracking method
 
-        if temp==[]:
-            return True
-        return False     
+        res=[]
+
+        def backtrack(current, open_count, close_count):
+            #check if current already has the 2*n parentheses we want 
+            #in this case we add it to res
+            if len(current)==2*n:
+                res.append(current)
+                return
+            if open_count<n:
+                backtrack(current+'(',open_count +1, close_count)
+            if close_count<open_count:
+                backtrack(current+')',open_count, close_count +1)
+        
+        backtrack('',0,0)
+        return res
+        
